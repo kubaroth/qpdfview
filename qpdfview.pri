@@ -8,5 +8,12 @@ isEmpty(ICON_INSTALL_PATH):ICON_INSTALL_PATH = /usr/share/icons/hicolor/scalable
 isEmpty(LAUNCHER_INSTALL_PATH):LAUNCHER_INSTALL_PATH = /usr/share/applications
 isEmpty(APPDATA_INSTALL_PATH):APPDATA_INSTALL_PATH = /usr/share/appdata
 
+# Set the root for qt toolchain
+QT_ROOT = $$(HOME)/toolchains/qt512/5.12.0/gcc_64
+INCLUDEPATH += $$QT_ROOT/include/poppler/qt5
+INCLUDEPATH += $$QT_ROOT/include/poppler
+LIBS += -L$$QT_ROOT/lib
+QMAKE_LFLAGS += -lpoppler-qt5
+
 win32:include(qpdfview_win32.pri)
 os2:include(qpdfview_os2.pri)

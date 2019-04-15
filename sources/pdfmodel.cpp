@@ -416,10 +416,10 @@ QList< QRectF > PdfPage::search(const QString& text, bool matchCase) const
 
     QRectF rect;
 
-    while(m_page->search(text, rect, Poppler::Page::NextResult, matchCase ? Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
-    {
-        results.append(rect);
-    }
+    // while(m_page->search(text, rect, Poppler::Page::NextResult, matchCase ? Poppler::Page::CaseSensitive : Poppler::Page::CaseInsensitive))
+    // {
+    //     results.append(rect);
+    // }
 
 #endif // HAS_POPPLER_22 HAS_POPPLER_14
 

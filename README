@@ -1,9 +1,12 @@
+# Qpdfview
 qpdfview is a tabbed document viewer using Poppler, libspectre, DjVuLibre, CUPS and Qt, licensed under GPL version 2 or later.
 
 The project homepage is "https://launchpad.net/qpdfview". The project maintainer is "Adam Reichold <adam.reichold@t-online.de>".
 
+# Dependencies
 It depends on libQtCore, libQtGui. It also depends on libQtSvg, libQtSql, libQtDBus, libcups, resp. libz if SVG, SQL, D-Bus, CUPS, resp. SyncTeX support is enabled. It also depends on libmagic if Qt version 4 is used and libmagic support is enabled. The PDF plug-in depends on libQtCore, libQtXml, libQtGui and libpoppler-qt4 or libpoppler-qt5. The PS plug-in depends on libQtCore, libQtGui and libspectre. The DjVu plug-in depends on libQtCore, libQtGui and libdjvulibre. The Fitz plug-in depends on libQtCore, libQtGui and libmupdf.
 
+# Build options
 It is built using "lrelease qpdfview.pro", "qmake qpdfview.pro" and "make". It is installed using "make install". The installation paths are defined in "qpdfview.pri".
 
 The following build-time options are available:
@@ -27,3 +30,41 @@ The following build-time options are available:
 For example, if one wants to build the program without support for CUPS and PostScript, one could run "qmake CONFIG+="without_cups without_ps" qpdfview.pro" instead of "qmake qpdfview.pro".
 
 The fallback and application-specific icons are derived from the Tango icon theme available at "http://tango.freedesktop.org".
+
+
+# Building on Arm (Raspberry Pi)
+
+## Dependencies
+
+### Openjpeg
+
+https://github.com/uclouvain/openjpeg.git
+
+```
+mkdir build; cd build; cmake ..;
+make
+sudo make install
+```
+
+### Poppler - https://anongit.freedesktop.org/git/poppler/poppler.git
+
+```
+mkdir build; cd build;
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/toolchains/qt512/  -DCMAKE_BUILD_TYPE=release -DWITH_TIFF=OFF -DWITH_NSS3=OFF -DTESTDATADIR=/home/pi/SRC/poppler/test
+make install 
+```
+
+### qtpdfview
+
+https://github.com/bendikro/qpdfview.git
+
+# In qpdfview.pri, set qt toolchain root location. (I tend to keep different versions of qt in non-default location ($HOME/toolchains/qt512...etc) 
+
+```
+QT_ROOT = $$(HOME)/toolchains/qt512/5.12.0/gcc_64
+
+mkdir build; cd build;
+qmake -r CONFIG+=without_pkgconfig CONFIG+=without_cups CONFIG+=without_svg CONFIG+=without_ps CONFIG+=without_djvu ../qpdfview.pro
+
+make
+```
