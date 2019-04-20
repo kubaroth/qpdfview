@@ -33,7 +33,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 } else {
     DEFINES += $$PDF_PLUGIN_DEFINES
     INCLUDEPATH += $$PDF_PLUGIN_INCLUDEPATH
-    LIBS += $$PDF_PLUGIN_LIBS
+    LIBS += $${QMAKE_LFLAGS}
 }
 
 !static_pdf_plugin {

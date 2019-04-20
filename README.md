@@ -59,17 +59,19 @@ cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/toolchains/qt512/  -DCMAKE_BUILD_TYPE=rele
 make install 
 ```
 
-#### qtpdfview
+#### qtpdfview - quick start
 
 https://github.com/bendikro/qpdfview.git
 
 In qpdfview.pri, set qt toolchain root location. (I tend to keep different versions of qt in non-default location ($HOME/toolchains/qt512...etc) 
+To get started with the minimum set of dependencies, just keep pdf, and svg and exclude cups, djvu and ps.
+Also (in particular for Arm) I tend to skip using pkgconfig.
 
 ```
 QT_ROOT = $$(HOME)/toolchains/qt512/5.12.0/gcc_64
 
 mkdir build; cd build;
-qmake -r CONFIG+=without_pkgconfig CONFIG+=without_cups CONFIG+=without_svg CONFIG+=without_ps CONFIG+=without_djvu ../qpdfview.pro
+qmake -r CONFIG+=without_pkgconfig CONFIG+=without_cups CONFIG+=without_ps CONFIG+=without_djvu ../qpdfview.pro
 
 make
 ```

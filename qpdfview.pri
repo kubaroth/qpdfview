@@ -13,7 +13,7 @@ QT_ROOT = $$(HOME)/toolchains/qt512/5.12.0/gcc_64
 INCLUDEPATH += $$QT_ROOT/include/poppler/qt5
 INCLUDEPATH += $$QT_ROOT/include/poppler
 LIBS += -L$$QT_ROOT/lib
-QMAKE_LFLAGS += -lpoppler-qt5
+QMAKE_LFLAGS += -lpoppler-qt5 -lpoppler-cpp -lpoppler-glib -lpoppler
 
 win32:include(qpdfview_win32.pri)
 os2:include(qpdfview_os2.pri)
